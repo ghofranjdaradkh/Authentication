@@ -1,15 +1,15 @@
-body, h1, ul, form {
-    margin: 0;
-    padding: 0;
+  ul, form {
+    margin: 5;
+    padding: 5;
 }
 
-/* Set background color and text color for the body */
+
 body {
     background-color: #f0f0f0;
     font-family: Arial, sans-serif;
 }
 
-/* Style the header */
+
 h1 {
     background-color: #007bff;
     color: #fff;
@@ -17,7 +17,7 @@ h1 {
     text-align: center;
 }
 
-/* Style the unordered list */
+
 ul {
     list-style-type: none;
     padding: 10px;
@@ -29,11 +29,35 @@ li {
     margin: 5px 0;
     border: 1px solid #ccc;
 }
+div { display: flex;
+   align-items: center;
+        }
+
+ h1 {
+  flex-grow: 1;
+  margin-right: 10px;
+        }
+
+  a {
+     display: inline-block;
+     padding: 10px 20px;
+ text-decoration: none;
+   background-color: #007bff;
+   color: #fff;
+   border: 2px solid #007bff;
+    border-radius: 5px;
+        }
+
+  a:hover {
+      background-color: #0056b3;
+     border-color: #0056b3;
+        }
+
 
 
 form {
   color: #22668D
-    background-color: #fff;
+    background-color: #ECF8F9;
     padding: 20px;
     margin: 20px auto;
     width: 60%;
@@ -51,9 +75,20 @@ label {
     display: block;
     margin-bottom: 5px;
 }
+h2 {
+    text-align: center;
+    color: #11009E;
+    padding: 10px;
+    display: inline-block;
+    background-color: #00C4FF;
+    color: #fff;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px; }
 
 textarea {
-    width: 100%;
+    width: 90%;
     padding: 10px;
     border: 1px solid #0F2C59;
     border-radius: 5px;

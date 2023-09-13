@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.view.RedirectView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,20 +32,20 @@ public class postController {
         return "index";
     }
 
+
+
     @PostMapping("/addNewPost")
-    public RedirectView addNewPost(String text,SiteUser siteUser , Model model) {
-//        if (userId == null) {
-//            return new RedirectView("/");
-//        }
-         long userId= siteUser.getId();
+    public RedirectView addNewPost(HttpServletRequest request, String text) {
+        HttpSession session = request.getSession();
 
-        SiteUser siteUser1  = authenticationRepository.findById(userId)
-                .orElseThrow(() -> new RuntimeException("User not found"));
+        String username = (String) session.getAttribute("username");
+        session.setAttribute("username", username);
 
-        Posts newPost = new Posts(text, siteUser1);
+        SiteUser siteUser = authenticationRepository.findByUsername(username);
+
+        Posts newPost = new Posts(text, siteUser);
         postRepository.save(newPost);
-
-
+        System.out.println("++++++++++++++++++++++++++++++++++++++++++++"+newPost.getText());
         return new RedirectView("/allPosts");
-    }
-}
+    }}
+

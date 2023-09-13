@@ -6,12 +6,19 @@
     <link href="style.css" rel="stylesheet">
 </head>
 <body>
+<div>
 <h1> welcome to the Home Page </h1>
+    <a href="/logout">Logout</a>
+</div>
 
 
+<ul>
+    <li th:each="post : ${posts}">
+        <h2 th:text="${post.id}"></h2>
+        <p th:text="${post.text}"></p>
 
-<ul th:each="post : ${posts}">
-    <li th:text="${post.text}"></li>
+
+    </li>
 </ul>
 
 
@@ -21,8 +28,8 @@
 
     <fieldset>
         <legend>Add Post</legend>
-        <label for="text">Text:</label>
-        <textarea id="text" name="textContent" rows="4" cols="50" required></textarea>
+        <input type="text" id="text" name="text" style="width: 600px; height: 150px;" required>
+
         <input type="submit" value="addNewPost">
 
     </fieldset>

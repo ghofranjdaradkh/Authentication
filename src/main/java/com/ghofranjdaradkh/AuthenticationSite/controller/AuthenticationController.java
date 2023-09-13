@@ -49,7 +49,10 @@ public String homePage(){
         return new RedirectView("/");
     }
 
-
+    @GetMapping ("/logout")
+    public RedirectView logout (){
+    return new RedirectView("/signup");
+    }
 }
 
 

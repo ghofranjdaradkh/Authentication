@@ -8,6 +8,7 @@ import java.util.Optional;
 public interface AuthenticationRepository extends JpaRepository<SiteUser,Long> {
 
     SiteUser findByUsername(String username);
+
 //
 //    SiteUser getCurrentUserByUsername(String username);
 //
