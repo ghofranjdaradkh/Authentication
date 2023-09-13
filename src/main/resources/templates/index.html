@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Home Page</title>
+    <link href="style.css" rel="stylesheet">
+</head>
+<body>
+<h1> welcome to the Home Page </h1>
+
+
+
+<ul th:each="post : ${posts}">
+    <li th:text="${post.text}"></li>
+</ul>
+
+
+
+
+<form action="/addNewPost" method="POST">
+
+    <fieldset>
+        <legend>Add Post</legend>
+        <label for="text">Text:</label>
+        <textarea id="text" name="textContent" rows="4" cols="50" required></textarea>
+        <input type="submit" value="addNewPost">
+
+    </fieldset>
+</form>
+
+
+</body>
+</html>
