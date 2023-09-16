@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.view.RedirectView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 @Controller
 public class AuthenticationController {
 
@@ -37,17 +40,26 @@ public String homePage(){
         System.out.println("**************");
         return new RedirectView("login");}
 
-    @PostMapping("/login")
-    public RedirectView logInUser(String username, String password) {
+
+    @PostMapping("/loginWithSecret")
+    public RedirectView logInUserWithSecret(HttpServletRequest request, String username, String password) {
         SiteUser loginUserDB = AuthenticationRepository.findByUsername(username);
-        if((loginUserDB == null)
-           || !(BCrypt.checkpw(password,loginUserDB.getPassword()))){
-           return new RedirectView("/login");
+
+        if (loginUserDB == null) {
+            // user does not exist
+            return new RedirectView("/login");
+            // password is incorrect
+        } else if (!BCrypt.checkpw(password, loginUserDB.getPassword())) {
+
+            return new RedirectView("/login");
+        } else {
+                //correct
+            HttpSession session = request.getSession();
+            session.setAttribute("username", username);
+            return new RedirectView("/");
         }
-
-
-        return new RedirectView("/");
     }
+
 
     @GetMapping ("/logout")
     public RedirectView logout (){
