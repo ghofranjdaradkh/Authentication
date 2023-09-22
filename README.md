@@ -24,6 +24,7 @@ DataBase >> spring.datasource.url=jdbc:postgresql://localhost:5434/siteUser
 
 
 
+The home page "localhost:8080/"
 
 
 
