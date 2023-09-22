@@ -26,17 +26,37 @@ public class postController {
     private PostRepository postRepository;
 
     @GetMapping("/allPosts")
-    public String getAllPosts(Model model) {
+    public String getAllPosts(HttpServletRequest request,Model model) {
+        if (request.getSession().getAttribute("username") != null) {
         List<Posts> posts = postRepository.findAll();
         model.addAttribute("posts", posts);
-        return "index";
+        model.addAttribute("name", request.getSession().getAttribute("username"));
+        return "post";
     }
+        return "redirect:/login";
+    }
+
+
+
+
+
+
+
+
+
+
+
 
 
 
     @PostMapping("/addNewPost")
     public RedirectView addNewPost(HttpServletRequest request, String text) {
         HttpSession session = request.getSession();
+
+        if (session.getAttribute("username") == null) {
+
+            return new RedirectView("/signup");
+        }
 
         String username = (String) session.getAttribute("username");
         session.setAttribute("username", username);
@@ -45,7 +65,9 @@ public class postController {
 
         Posts newPost = new Posts(text, siteUser);
         postRepository.save(newPost);
-        System.out.println("++++++++++++++++++++++++++++++++++++++++++++"+newPost.getText());
+        System.out.println("++++++++++++++++++++++++++++++++++++++++++++" + newPost.getText());
         return new RedirectView("/allPosts");
-    }}
+    }
+}
+
 
