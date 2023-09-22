@@ -40,7 +40,7 @@ div { display: flex;
 
   a {
      display: inline-block;
-     padding: 10px 20px;
+     padding: 10px 10px;
  text-decoration: none;
    background-color: #007bff;
    color: #fff;
@@ -107,3 +107,5 @@ input[type="submit"] {
 input[type="submit"]:hover {
     background-color: #CAEDFF;
 }
+
+

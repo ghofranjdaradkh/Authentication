@@ -23,6 +23,12 @@ public class AuthenticationController {
 public String homePage(){
     return "index";
 }
+
+    @GetMapping ("/post")
+    public String postPage(){
+        return "post";
+    }
+
     @GetMapping("/login")
     public String getLogin(){
         return "login.html";
@@ -56,15 +62,20 @@ public String homePage(){
                 //correct
             HttpSession session = request.getSession();
             session.setAttribute("username", username);
-            return new RedirectView("/");
+            return new RedirectView("/post");
         }
     }
 
 
-    @GetMapping ("/logout")
-    public RedirectView logout (){
-    return new RedirectView("/signup");
+    @GetMapping("/logout")
+    public RedirectView logout(HttpServletRequest request, HttpSession session) {
+        // Invalidate the session
+        session.invalidate();
+
+
+        return new RedirectView("/");
     }
+
 }
 
 
